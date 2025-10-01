@@ -64,10 +64,10 @@ public class laporan_keuangan extends javax.swing.JPanel {
         add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(930, 130, 140, 50));
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1350, 130, 160, 50));
+        add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1260, 130, 160, 50));
 
         jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        add(jComboBox2, new org.netbeans.lib.awtextra.AbsoluteConstraints(1520, 130, 150, 50));
+        add(jComboBox2, new org.netbeans.lib.awtextra.AbsoluteConstraints(1440, 130, 150, 50));
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -82,7 +82,7 @@ public class laporan_keuangan extends javax.swing.JPanel {
         ));
         jScrollPane1.setViewportView(jTable1);
 
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 230, 1660, 690));
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 230, 1620, 690));
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed

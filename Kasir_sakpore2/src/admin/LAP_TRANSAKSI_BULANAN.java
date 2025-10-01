@@ -32,7 +32,6 @@ public class LAP_TRANSAKSI_BULANAN extends javax.swing.JPanel {
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
-        jMonthChooser1 = new com.toedter.calendar.JMonthChooser();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setMinimumSize(new java.awt.Dimension(1630, 750));
@@ -82,12 +81,8 @@ public class LAP_TRANSAKSI_BULANAN extends javax.swing.JPanel {
         add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 20, 150, 40));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(0, 0, 0));
         jLabel1.setText("TANGGAL :");
         add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1310, 20, 120, 40));
-
-        jMonthChooser1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        add(jMonthChooser1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1430, 20, 180, 40));
     }// </editor-fold>//GEN-END:initComponents
 
 
@@ -95,7 +90,6 @@ public class LAP_TRANSAKSI_BULANAN extends javax.swing.JPanel {
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
-    private com.toedter.calendar.JMonthChooser jMonthChooser1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     private javax.swing.JTextField jTextField1;

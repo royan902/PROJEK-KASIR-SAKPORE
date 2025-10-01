@@ -8,12 +8,12 @@ package admin;
  *
  * @author Acer Aspire Lite 15
  */
-public class laporan_pembeliaan extends javax.swing.JPanel {
+public class laporan_pembelian extends javax.swing.JPanel {
 
     /**
      * Creates new form laporan_transaksi
      */
-    public laporan_pembeliaan() {
+    public laporan_pembelian() {
         initComponents();
     }
 

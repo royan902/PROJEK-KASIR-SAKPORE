@@ -236,18 +236,26 @@ public class dashboard_admin extends javax.swing.JFrame {
 
     private void A_btn_lap_keuanganActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_A_btn_lap_keuanganActionPerformed
         // TODO add your handling code here:
+         laporan_keuangan lap_keuangan = new laporan_keuangan();   // buat instance panel
+        showPanel(lap_keuangan);
     }//GEN-LAST:event_A_btn_lap_keuanganActionPerformed
 
     private void A_btn_lap_transaksiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_A_btn_lap_transaksiActionPerformed
         // TODO add your handling code here:
+        laporan_transaksi lap_transaksi = new laporan_transaksi();   // buat instance panel
+        showPanel(lap_transaksi);
     }//GEN-LAST:event_A_btn_lap_transaksiActionPerformed
 
     private void A_btn_lap_pembelianActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_A_btn_lap_pembelianActionPerformed
         // TODO add your handling code here:
+        laporan_pembelian lap_pembelian = new laporan_pembelian();   // buat instance panel
+        showPanel(lap_pembelian);
     }//GEN-LAST:event_A_btn_lap_pembelianActionPerformed
 
     private void A_btn_daftar_brgActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_A_btn_daftar_brgActionPerformed
         // TODO add your handling code here:
+        daftar_barang d_barang = new daftar_barang();   // buat instance panel
+        showPanel(d_barang);
     }//GEN-LAST:event_A_btn_daftar_brgActionPerformed
 
     private void A_btn_kategoriActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_A_btn_kategoriActionPerformed
@@ -258,6 +266,8 @@ public class dashboard_admin extends javax.swing.JFrame {
 
     private void A_btn_pembelianActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_A_btn_pembelianActionPerformed
         // TODO add your handling code here:
+        pembelian_barang pembelian_brg = new pembelian_barang();   // buat instance panel
+        showPanel(pembelian_brg);
     }//GEN-LAST:event_A_btn_pembelianActionPerformed
 
     /**
