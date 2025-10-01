@@ -8,12 +8,12 @@ package admin;
  *
  * @author Acer Aspire Lite 15
  */
-public class LAP_TRANSAKSI_HARIAN extends javax.swing.JPanel {
+public class LAP_TRANSAKSI_MINNGUAN extends javax.swing.JPanel {
 
     /**
      * Creates new form LAP_TRANSAKSI_HARIAN
      */
-    public LAP_TRANSAKSI_HARIAN() {
+    public LAP_TRANSAKSI_MINNGUAN() {
         initComponents();
     }
 
@@ -33,13 +33,15 @@ public class LAP_TRANSAKSI_HARIAN extends javax.swing.JPanel {
         jButton2 = new javax.swing.JButton();
         jDateChooser1 = new com.toedter.calendar.JDateChooser();
         jLabel1 = new javax.swing.JLabel();
+        jDateChooser2 = new com.toedter.calendar.JDateChooser();
+        jLabel2 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setMinimumSize(new java.awt.Dimension(1630, 750));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jTextField1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 500, 40));
+        add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 40, 500, 50));
 
         jTable1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
@@ -71,21 +73,27 @@ public class LAP_TRANSAKSI_HARIAN extends javax.swing.JPanel {
         jTable1.setRowHeight(30);
         jScrollPane1.setViewportView(jTable1);
 
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 80, 1610, 650));
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 130, 1610, 610));
 
         jButton1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jButton1.setText("DETAIL");
-        add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 20, 150, 40));
+        add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 40, 150, 50));
 
         jButton2.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jButton2.setText("CARI");
-        add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 20, 150, 40));
+        add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 40, 150, 50));
         add(jDateChooser1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1238, 20, 360, 40));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel1.setText("TANGGAL :");
-        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1117, 20, 120, 40));
+        jLabel1.setText("TANGGAL AWAL :");
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1037, 20, 200, 40));
+        add(jDateChooser2, new org.netbeans.lib.awtextra.AbsoluteConstraints(1240, 70, 360, 40));
+
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel2.setText("SAMPAI TANGGAL :");
+        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(1040, 70, 200, 40));
     }// </editor-fold>//GEN-END:initComponents
 
 
@@ -93,7 +101,9 @@ public class LAP_TRANSAKSI_HARIAN extends javax.swing.JPanel {
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private com.toedter.calendar.JDateChooser jDateChooser1;
+    private com.toedter.calendar.JDateChooser jDateChooser2;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     private javax.swing.JTextField jTextField1;

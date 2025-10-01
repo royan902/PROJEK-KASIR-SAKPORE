@@ -8,12 +8,12 @@ package admin;
  *
  * @author Acer Aspire Lite 15
  */
-public class LAP_TRANSAKSI_HARIAN extends javax.swing.JPanel {
+public class LAP_TRANSAKSI_BULANAN extends javax.swing.JPanel {
 
     /**
      * Creates new form LAP_TRANSAKSI_HARIAN
      */
-    public LAP_TRANSAKSI_HARIAN() {
+    public LAP_TRANSAKSI_BULANAN() {
         initComponents();
     }
 
@@ -31,8 +31,8 @@ public class LAP_TRANSAKSI_HARIAN extends javax.swing.JPanel {
         jTable1 = new javax.swing.JTable();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
-        jDateChooser1 = new com.toedter.calendar.JDateChooser();
         jLabel1 = new javax.swing.JLabel();
+        jMonthChooser1 = new com.toedter.calendar.JMonthChooser();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setMinimumSize(new java.awt.Dimension(1630, 750));
@@ -80,20 +80,22 @@ public class LAP_TRANSAKSI_HARIAN extends javax.swing.JPanel {
         jButton2.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jButton2.setText("CARI");
         add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 20, 150, 40));
-        add(jDateChooser1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1238, 20, 360, 40));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(0, 0, 0));
         jLabel1.setText("TANGGAL :");
-        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1117, 20, 120, 40));
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1310, 20, 120, 40));
+
+        jMonthChooser1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        add(jMonthChooser1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1430, 20, 180, 40));
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private com.toedter.calendar.JDateChooser jDateChooser1;
     private javax.swing.JLabel jLabel1;
+    private com.toedter.calendar.JMonthChooser jMonthChooser1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     private javax.swing.JTextField jTextField1;
