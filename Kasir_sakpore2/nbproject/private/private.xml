@@ -3,28 +3,23 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-<<<<<<< HEAD
-            <file>file:/C:/The%20Maze/sakpore/PROJEK-KASIR-SAKPORE/Kasir_sakpore2/src/kasir/detail_transaksi.java</file>
-            <file>file:/C:/The%20Maze/sakpore/PROJEK-KASIR-SAKPORE/Kasir_sakpore2/src/admin/tambah_barang.java</file>
-            <file>file:/C:/The%20Maze/sakpore/PROJEK-KASIR-SAKPORE/Kasir_sakpore2/src/kasir/daftar_barang.java</file>
-            <file>file:/C:/The%20Maze/sakpore/PROJEK-KASIR-SAKPORE/Kasir_sakpore2/src/kasir/dashboard_kasir.java</file>
-            <file>file:/C:/The%20Maze/sakpore/PROJEK-KASIR-SAKPORE/Kasir_sakpore2/src/admin/daftar_barang.java</file>
-            <file>file:/C:/The%20Maze/sakpore/PROJEK-KASIR-SAKPORE/Kasir_sakpore2/src/admin/beranda_admin.java</file>
-=======
-            <file>file:/C:/Users/LABPPLG2-16/Documents/aboy/TheMaze/sakpore_kelompok5/PROJEK-KASIR-SAKPORE/Kasir_sakpore2/src/admin/laporan_pembeliaan.java</file>
-            <file>file:/C:/Users/LABPPLG2-16/Documents/aboy/TheMaze/sakpore_kelompok5/PROJEK-KASIR-SAKPORE/Kasir_sakpore2/src/admin/laporan_transaksi.java</file>
-            <file>file:/C:/Users/LABPPLG2-16/Documents/aboy/TheMaze/sakpore_kelompok5/PROJEK-KASIR-SAKPORE/Kasir_sakpore2/src/kasir/detail_transaksi.java</file>
-            <file>file:/C:/Users/LABPPLG2-16/Documents/aboy/TheMaze/sakpore_kelompok5/PROJEK-KASIR-SAKPORE/Kasir_sakpore2/src/admin/NewJPanel.java</file>
-            <file>file:/C:/Users/LABPPLG2-16/Documents/aboy/TheMaze/sakpore_kelompok5/PROJEK-KASIR-SAKPORE/Kasir_sakpore2/src/admin/kategori_barang.java</file>
-            <file>file:/C:/Users/LABPPLG2-16/Documents/aboy/TheMaze/sakpore_kelompok5/PROJEK-KASIR-SAKPORE/Kasir_sakpore2/src/admin/tambah_barang.java</file>
-            <file>file:/C:/Users/LABPPLG2-16/Documents/aboy/TheMaze/sakpore_kelompok5/PROJEK-KASIR-SAKPORE/Kasir_sakpore2/src/admin/pembelian_barang.java</file>
-            <file>file:/C:/Users/LABPPLG2-16/Documents/aboy/TheMaze/sakpore_kelompok5/PROJEK-KASIR-SAKPORE/Kasir_sakpore2/src/admin/dashboard_admin.java</file>
-            <file>file:/C:/Users/LABPPLG2-16/Documents/aboy/TheMaze/sakpore_kelompok5/PROJEK-KASIR-SAKPORE/Kasir_sakpore2/src/kasir/dashboard_kasir.java</file>
-            <file>file:/C:/Users/LABPPLG2-16/Documents/aboy/TheMaze/sakpore_kelompok5/PROJEK-KASIR-SAKPORE/Kasir_sakpore2/src/admin/daftar_barang.java</file>
-            <file>file:/C:/Users/LABPPLG2-16/Documents/aboy/TheMaze/sakpore_kelompok5/PROJEK-KASIR-SAKPORE/Kasir_sakpore2/src/admin/LAP_TRANSAKSI_HARIAN.java</file>
-            <file>file:/C:/Users/LABPPLG2-16/Documents/aboy/TheMaze/sakpore_kelompok5/PROJEK-KASIR-SAKPORE/Kasir_sakpore2/src/admin/beranda_admin.java</file>
-            <file>file:/C:/Users/LABPPLG2-16/Documents/aboy/TheMaze/sakpore_kelompok5/PROJEK-KASIR-SAKPORE/Kasir_sakpore2/src/admin/daftar_user.java</file>
->>>>>>> f078b8c7ee8a109e6e65d4a4d8e0c7fda5966825
+            <file>file:/D:/New%20folder/PROJEK/PROJEK-KASIR-SAKPORE/Kasir_sakpore2/src/admin/daftar_barang.java</file>
+            <file>file:/D:/New%20folder/PROJEK/PROJEK-KASIR-SAKPORE/Kasir_sakpore2/src/admin/beranda_admin.java</file>
+            <file>file:/D:/New%20folder/PROJEK/PROJEK-KASIR-SAKPORE/Kasir_sakpore2/src/kasir/dashboard_kasir.java</file>
+            <file>file:/D:/New%20folder/PROJEK/PROJEK-KASIR-SAKPORE/Kasir_sakpore2/src/admin/kategori_barang.java</file>
+            <file>file:/D:/New%20folder/PROJEK/PROJEK-KASIR-SAKPORE/Kasir_sakpore2/src/admin/dashboard_admin.java</file>
+            <file>file:/D:/New%20folder/PROJEK/PROJEK-KASIR-SAKPORE/Kasir_sakpore2/src/login/halaman_login.java</file>
+            <file>file:/D:/New%20folder/PROJEK/PROJEK-KASIR-SAKPORE/Kasir_sakpore2/src/admin/LAP_TRANSAKSI_BULANAN.java</file>
+            <file>file:/D:/New%20folder/PROJEK/PROJEK-KASIR-SAKPORE/Kasir_sakpore2/src/admin/tambah_barang.java</file>
+            <file>file:/D:/New%20folder/PROJEK/PROJEK-KASIR-SAKPORE/Kasir_sakpore2/src/admin/pembelian_barang.java</file>
+            <file>file:/D:/New%20folder/PROJEK/PROJEK-KASIR-SAKPORE/Kasir_sakpore2/src/admin/daftar_user.java</file>
+            <file>file:/D:/New%20folder/PROJEK/PROJEK-KASIR-SAKPORE/Kasir_sakpore2/src/admin/LAP_TRANSAKSI_MINNGUAN.java</file>
+            <file>file:/D:/New%20folder/PROJEK/PROJEK-KASIR-SAKPORE/Kasir_sakpore2/src/admin/LAP_TRANSAKSI_HARIAN.java</file>
+            <file>file:/D:/New%20folder/PROJEK/PROJEK-KASIR-SAKPORE/Kasir_sakpore2/src/admin/laporan_transaksi.java</file>
+            <file>file:/D:/New%20folder/PROJEK/PROJEK-KASIR-SAKPORE/Kasir_sakpore2/src/kasir/kasir.java</file>
+            <file>file:/D:/New%20folder/PROJEK/PROJEK-KASIR-SAKPORE/Kasir_sakpore2/src/kasir/detail_transaksi.java</file>
+            <file>file:/D:/New%20folder/PROJEK/PROJEK-KASIR-SAKPORE/Kasir_sakpore2/src/admin/laporan_keuangan.java</file>
+            <file>file:/D:/New%20folder/PROJEK/PROJEK-KASIR-SAKPORE/Kasir_sakpore2/src/kasir/daftar_barang.java</file>
         </group>
     </open-files>
 </project-private>

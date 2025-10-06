@@ -4,6 +4,15 @@
  */
 package admin;
 
+import config.Koneksi;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.Statement;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 /**
  *
  * @author user
@@ -13,10 +22,87 @@ public class kategori_barang extends javax.swing.JPanel {
     /**
      * Creates new form kategori_barang
      */
+    
+    private DefaultTableModel tableModel;
+    private String selectedCategoryId = null;
+    
     public kategori_barang() {
         initComponents();
         
+        tableModel = (DefaultTableModel) A_tbl_kategori.getModel();
+        loadTableData(null);
+        
+        A_tbl_kategori.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                int selectedRow = A_tbl_kategori.getSelectedRow();
+                if (selectedRow != -1) {
+                    // Simpan ID kategori dari baris yang diklik
+                    selectedCategoryId = tableModel.getValueAt(selectedRow, 1).toString();
+                }
+            }
+        });
+        
     }
+    
+    private void loadTableData(String searchTerm) {
+        tableModel.setRowCount(0);
+
+        String sql = "SELECT * FROM kategori_barang";
+        // Jika ada istilah pencarian, modifikasi query SQL
+        if (searchTerm != null && !searchTerm.isEmpty()) {
+            sql += " WHERE id_kategori ILIKE ? OR nama_kategori ILIKE ?";
+        }
+        sql += " ORDER BY id_kategori ASC";
+
+        try (Connection conn = Koneksi.getConnection();
+             PreparedStatement ps = conn.prepareStatement(sql)) {
+
+            if (searchTerm != null && !searchTerm.isEmpty()) {
+                ps.setString(1, "%" + searchTerm + "%");
+                ps.setString(2, "%" + searchTerm + "%");
+            }
+
+            try (ResultSet rs = ps.executeQuery()) {
+                int no = 1;
+                while (rs.next()) {
+                    String idKategori = rs.getString("id_kategori");
+                    String namaKategori = rs.getString("nama_kategori");
+                    tableModel.addRow(new Object[]{no++, idKategori, namaKategori});
+                }
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Gagal memuat data: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            e.printStackTrace();
+        }
+    }
+    
+    private String generateNewId() throws Exception {
+        String newId = "001";
+        try (Connection conn = Koneksi.getConnection();
+             Statement stmt = conn.createStatement();
+             ResultSet rs = stmt.executeQuery("SELECT MAX(id_kategori) FROM kategori_barang")) {
+            
+            if (rs.next()) {
+                String lastId = rs.getString(1);
+                if (lastId != null) {
+                    int idNum = Integer.parseInt(lastId);
+                    idNum++;
+                    newId = String.format("%03d", idNum); // Format menjadi 3 digit dengan angka 0 di depan
+                }
+            }
+        }
+        return newId;
+    }
+    
+    private void clearFieldsAndSelection() {
+        A_tf_tambah_kategori.setText("");
+        A_tf_cari_kategori.setText("");
+        A_tbl_kategori.clearSelection();
+        selectedCategoryId = null;
+        A_btn_simpan_ktg.setText("SIMPAN"); // Kembalikan teks tombol ke default
+    }
+
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -29,18 +115,18 @@ public class kategori_barang extends javax.swing.JPanel {
 
         jPanel5 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        A_tf_cari_kategori = new javax.swing.JTextField();
+        A_btn_refresh = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
+        A_tbl_kategori = new javax.swing.JTable();
+        A_btn_cari_kaegori = new javax.swing.JButton();
+        A_btn_delete_kategori = new javax.swing.JButton();
+        A_btn_edit_kategori = new javax.swing.JButton();
         jPanel6 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
-        jButton2 = new javax.swing.JButton();
+        A_tf_tambah_kategori = new javax.swing.JTextField();
+        A_btn_simpan_ktg = new javax.swing.JButton();
 
         setMaximumSize(new java.awt.Dimension(1650, 940));
         setMinimumSize(new java.awt.Dimension(1650, 940));
@@ -53,62 +139,92 @@ public class kategori_barang extends javax.swing.JPanel {
 
         jLabel1.setBackground(new java.awt.Color(0, 0, 102));
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("   DAFTAR KATEGORI BARANG");
         jLabel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
         jLabel1.setOpaque(true);
         jPanel5.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1680, 60));
 
-        jTextField1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jPanel5.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 80, 440, 40));
+        A_tf_cari_kategori.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jPanel5.add(A_tf_cari_kategori, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 80, 440, 40));
 
-        jButton1.setBackground(new java.awt.Color(0, 255, 51));
-        jButton1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jButton1.setText("REFRESH");
-        jPanel5.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1180, 80, 150, 40));
+        A_btn_refresh.setBackground(new java.awt.Color(0, 255, 51));
+        A_btn_refresh.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        A_btn_refresh.setForeground(new java.awt.Color(255, 255, 255));
+        A_btn_refresh.setText("REFRESH");
+        A_btn_refresh.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                A_btn_refreshActionPerformed(evt);
+            }
+        });
+        jPanel5.add(A_btn_refresh, new org.netbeans.lib.awtextra.AbsoluteConstraints(1180, 80, 150, 40));
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        A_tbl_kategori.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
             },
             new String [] {
-                "NO.", "ID KATEGORI", "NAMA KATEGORI", "TANGGAL INPUT"
+                "NO.", "ID KATEGORI", "NAMA KATEGORI"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
             }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
         });
-        jTable1.setRowHeight(30);
-        jScrollPane1.setViewportView(jTable1);
-        if (jTable1.getColumnModel().getColumnCount() > 0) {
-            jTable1.getColumnModel().getColumn(0).setMaxWidth(30);
+        A_tbl_kategori.setRowHeight(30);
+        jScrollPane1.setViewportView(A_tbl_kategori);
+        if (A_tbl_kategori.getColumnModel().getColumnCount() > 0) {
+            A_tbl_kategori.getColumnModel().getColumn(0).setResizable(false);
+            A_tbl_kategori.getColumnModel().getColumn(1).setResizable(false);
+            A_tbl_kategori.getColumnModel().getColumn(2).setResizable(false);
         }
 
         jPanel5.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 140, 1640, 540));
 
-        jButton3.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jButton3.setForeground(new java.awt.Color(255, 255, 255));
-        jButton3.setText("CARI");
-        jPanel5.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 80, 150, 40));
+        A_btn_cari_kaegori.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        A_btn_cari_kaegori.setForeground(new java.awt.Color(0, 0, 0));
+        A_btn_cari_kaegori.setText("CARI");
+        A_btn_cari_kaegori.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                A_btn_cari_kaegoriActionPerformed(evt);
+            }
+        });
+        jPanel5.add(A_btn_cari_kaegori, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 80, 150, 40));
 
-        jButton4.setBackground(new java.awt.Color(204, 0, 0));
-        jButton4.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jButton4.setForeground(new java.awt.Color(255, 255, 255));
-        jButton4.setText("DELETE");
-        jPanel5.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(1500, 80, 150, 40));
+        A_btn_delete_kategori.setBackground(new java.awt.Color(204, 0, 0));
+        A_btn_delete_kategori.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        A_btn_delete_kategori.setForeground(new java.awt.Color(255, 255, 255));
+        A_btn_delete_kategori.setText("DELETE");
+        A_btn_delete_kategori.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                A_btn_delete_kategoriActionPerformed(evt);
+            }
+        });
+        jPanel5.add(A_btn_delete_kategori, new org.netbeans.lib.awtextra.AbsoluteConstraints(1500, 80, 150, 40));
 
-        jButton5.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jButton5.setForeground(new java.awt.Color(255, 255, 255));
-        jButton5.setText("EDIT");
-        jPanel5.add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(1340, 80, 150, 40));
+        A_btn_edit_kategori.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        A_btn_edit_kategori.setForeground(new java.awt.Color(0, 0, 0));
+        A_btn_edit_kategori.setText("EDIT");
+        A_btn_edit_kategori.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                A_btn_edit_kategoriActionPerformed(evt);
+            }
+        });
+        jPanel5.add(A_btn_edit_kategori, new org.netbeans.lib.awtextra.AbsoluteConstraints(1340, 80, 150, 40));
 
         add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 210, 1680, 700));
 
@@ -118,6 +234,7 @@ public class kategori_barang extends javax.swing.JPanel {
 
         jLabel3.setBackground(new java.awt.Color(0, 0, 102));
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("   TAMBAH KATEGORI BARANG");
         jLabel3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
         jLabel3.setOpaque(true);
@@ -128,31 +245,142 @@ public class kategori_barang extends javax.swing.JPanel {
         jLabel4.setText("TAMBAHKAN NAMA KATEGORI BARANG :");
         jPanel6.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 80, -1, 40));
 
-        jTextField2.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jPanel6.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 80, 820, 40));
+        A_tf_tambah_kategori.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jPanel6.add(A_tf_tambah_kategori, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 80, 820, 40));
 
-        jButton2.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jButton2.setText("SIMPAN");
-        jPanel6.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(1220, 80, 300, 40));
+        A_btn_simpan_ktg.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        A_btn_simpan_ktg.setText("SIMPAN");
+        A_btn_simpan_ktg.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                A_btn_simpan_ktgActionPerformed(evt);
+            }
+        });
+        jPanel6.add(A_btn_simpan_ktg, new org.netbeans.lib.awtextra.AbsoluteConstraints(1220, 80, 300, 40));
 
         add(jPanel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 1680, 180));
     }// </editor-fold>//GEN-END:initComponents
 
+    private void A_btn_simpan_ktgActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_A_btn_simpan_ktgActionPerformed
+        // TODO add your handling code here:
+        String namaKategori = A_tf_tambah_kategori.getText().trim();
+
+        if (namaKategori.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Nama kategori tidak boleh kosong!", "Peringatan", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+
+        try {
+            // Cek apakah mode UPDATE atau INSERT berdasarkan teks tombol
+            if (A_btn_simpan_ktg.getText().equals("UPDATE")) {
+                // Mode UPDATE
+                String sql = "UPDATE kategori_barang SET nama_kategori = ? WHERE id_kategori = ?";
+                try (Connection conn = Koneksi.getConnection(); PreparedStatement ps = conn.prepareStatement(sql)) {
+                    ps.setString(1, namaKategori);
+                    ps.setString(2, selectedCategoryId);
+                    
+                    int result = ps.executeUpdate();
+                    if (result > 0) {
+                        JOptionPane.showMessageDialog(this, "Kategori berhasil diperbarui!", "Sukses", JOptionPane.INFORMATION_MESSAGE);
+                        clearFieldsAndSelection();
+                        loadTableData(null);
+                    }
+                }
+            } else {
+                // Mode INSERT (Simpan Baru)
+                String newId = generateNewId();
+                String sql = "INSERT INTO kategori_barang (id_kategori, nama_kategori) VALUES (?, ?)";
+                try (Connection conn = Koneksi.getConnection(); PreparedStatement ps = conn.prepareStatement(sql)) {
+                    ps.setString(1, newId);
+                    ps.setString(2, namaKategori);
+                    
+                    int result = ps.executeUpdate();
+                    if (result > 0) {
+                        JOptionPane.showMessageDialog(this, "Kategori berhasil disimpan!", "Sukses", JOptionPane.INFORMATION_MESSAGE);
+                        clearFieldsAndSelection();
+                        loadTableData(null);
+                    }
+                }
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Terjadi kesalahan: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            e.printStackTrace();
+        }
+    }//GEN-LAST:event_A_btn_simpan_ktgActionPerformed
+
+    private void A_btn_cari_kaegoriActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_A_btn_cari_kaegoriActionPerformed
+        // TODO add your handling code here:
+        String searchTerm = A_tf_cari_kategori.getText().trim();
+        loadTableData(searchTerm);
+    }//GEN-LAST:event_A_btn_cari_kaegoriActionPerformed
+
+    private void A_btn_refreshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_A_btn_refreshActionPerformed
+        // TODO add your handling code here:
+        clearFieldsAndSelection();
+        loadTableData(null);
+    }//GEN-LAST:event_A_btn_refreshActionPerformed
+
+    private void A_btn_edit_kategoriActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_A_btn_edit_kategoriActionPerformed
+        // TODO add your handling code here:
+        if (selectedCategoryId == null) {
+            JOptionPane.showMessageDialog(this, "Silakan pilih kategori yang ingin di-edit dari tabel.", "Peringatan", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+        
+        // Ambil nama kategori dari baris yang dipilih untuk ditampilkan di text field
+        int selectedRow = A_tbl_kategori.getSelectedRow();
+        String namaKategori = tableModel.getValueAt(selectedRow, 2).toString();
+        
+        A_tf_tambah_kategori.setText(namaKategori);
+        A_btn_simpan_ktg.setText("UPDATE");
+    }//GEN-LAST:event_A_btn_edit_kategoriActionPerformed
+
+    private void A_btn_delete_kategoriActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_A_btn_delete_kategoriActionPerformed
+        // TODO add your handling code here:
+        if (selectedCategoryId == null) {
+            JOptionPane.showMessageDialog(this, "Silakan pilih kategori yang ingin dihapus dari tabel.", "Peringatan", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+        
+        int confirm = JOptionPane.showConfirmDialog(this, 
+                "Apakah Anda yakin ingin menghapus kategori ini?", 
+                "Konfirmasi Hapus", 
+                JOptionPane.YES_NO_OPTION);
+        
+        if (confirm == JOptionPane.YES_OPTION) {
+            try {
+                String sql = "DELETE FROM kategori_barang WHERE id_kategori = ?";
+                try (Connection conn = Koneksi.getConnection(); PreparedStatement ps = conn.prepareStatement(sql)) {
+                    ps.setString(1, selectedCategoryId);
+                    
+                    int result = ps.executeUpdate();
+                    if (result > 0) {
+                        JOptionPane.showMessageDialog(this, "Kategori berhasil dihapus!", "Sukses", JOptionPane.INFORMATION_MESSAGE);
+                        clearFieldsAndSelection();
+                        loadTableData(null);
+                    }
+                }
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(this, "Gagal menghapus data: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+                e.printStackTrace();
+            }
+        }
+    }//GEN-LAST:event_A_btn_delete_kategoriActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
+    private javax.swing.JButton A_btn_cari_kaegori;
+    private javax.swing.JButton A_btn_delete_kategori;
+    private javax.swing.JButton A_btn_edit_kategori;
+    private javax.swing.JButton A_btn_refresh;
+    private javax.swing.JButton A_btn_simpan_ktg;
+    private javax.swing.JTable A_tbl_kategori;
+    private javax.swing.JTextField A_tf_cari_kategori;
+    private javax.swing.JTextField A_tf_tambah_kategori;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
     // End of variables declaration//GEN-END:variables
 }
